@@ -1,5 +1,24 @@
 <!-- String Interpolation and Property Binding -->
 <h1 class="text-center" [style.color]="color">{{ title }}</h1>
+<hr />
+
+<!-- Event Binding -->
+<h2>
+  {{ content1 }}
+  <span
+    ><button class="btn btn-primary" (click)="onClick()">Click</button></span
+  >
+</h2>
 <hr>
-<h2>{{content1}} <span><button class="btn btn-primary" (click)="onClick()">Click</button></span></h2>
+
+<!-- Two Way Data Binding -->
+<h2>Two Way Data Binding</h2>
+<label for="name">Name </label>
+<input type="text" name="name" #ServerName [(ngModel)]="twoData">
+<p> Two Way Binded Data : {{twoData}}<p>
+<hr>
+
+<!-- Directives -->
+<app-for *ngFor="let number of numbers"></app-for>
+
 

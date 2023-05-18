@@ -22,8 +22,9 @@
 
 <!-- Directives -->
 <app-for *ngFor="let number of numbers"></app-for>
-<hr>
+<hr />
 <div class="contain">
-  <h2 *ngIf ="show ===true">Conditionaly Rendered using ngIf</h2>
+  <h2 *ngIf="show === true">Conditionaly Rendered using ngIf</h2>
 </div>
-<hr>
+<hr />
+<h2 [ngClass]="{class : show === true }">ngClass </h2>

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./topic-explorer.component.css']
 })
 export class TopicExplorerComponent {
+  title : string = 'Topic Components'
 
 }

@@ -1,33 +1,29 @@
 <!-- String Interpolation and Property Binding -->
 <h1 class="text-center" [style.color]="color">{{ title }}</h1>
 <hr />
-<<<<<<< HEAD
 
 <!-- Event Binding -->
-=======
->>>>>>> fda4571b549ae907453f0e5bc9446294ebd8b3f7
 <h2>
   {{ content1 }}
   <span
     ><button class="btn btn-primary" (click)="onClick()">Click</button></span
   >
 </h2>
-<hr>
-<<<<<<< HEAD
+<hr />
 
 <!-- Two Way Data Binding -->
-=======
->>>>>>> fda4571b549ae907453f0e5bc9446294ebd8b3f7
+
 <h2>Two Way Data Binding</h2>
 <label for="name">Name </label>
-<input type="text" name="name" #ServerName [(ngModel)]="twoData">
-<p> Two Way Binded Data : {{twoData}}<p>
-<hr>
-<<<<<<< HEAD
+<input type="text" name="name" #ServerName [(ngModel)]="twoData" />
+<p>Two Way Binded Data : {{ twoData }}</p>
+<p></p>
+<hr />
 
 <!-- Directives -->
 <app-for *ngFor="let number of numbers"></app-for>
-
-
-=======
->>>>>>> fda4571b549ae907453f0e5bc9446294ebd8b3f7
+<hr>
+<div class="contain">
+  <h2 *ngIf ="show ===true">Conditionaly Rendered using ngIf</h2>
+</div>
+<hr>

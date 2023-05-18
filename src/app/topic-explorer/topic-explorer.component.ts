@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-topic-explorer',
   templateUrl: './topic-explorer.component.html',
   styleUrls: ['./topic-explorer.component.css'],
 })
-export class TopicExplorerComponent {
+export class TopicExplorerComponent implements OnInit {
   title: string = 'Topic Components';
   color: string = 'blue';
   content1: string = 'Event Binding';
   twoData: string = '';
-<<<<<<< HEAD
 
   numbers = [1, 2, 3, 4, 5, 6];
-=======
->>>>>>> fda4571b549ae907453f0e5bc9446294ebd8b3f7
+
+  show: boolean = false;
 
   onClick() {
     this.content1 = 'Event Binded';
+  }
+
+  ngOnInit() {
+    setInterval(() => (this.show = !this.show), 500);
   }
 }

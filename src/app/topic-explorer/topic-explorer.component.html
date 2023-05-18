@@ -27,7 +27,17 @@
   <h2 *ngIf="show === true">Conditionaly Rendered using ngIf</h2>
 </div>
 <hr />
-<h2 [ngClass]="{class : show === true }">ngClass </h2>
-<hr>
-<h2 [ngStyle]="{backgroundColor : show === true ?'yellow':'red' }">ngStyle</h2>
-<hr>
+<h2 [ngClass]="{ class: show === true }">ngClass</h2>
+<hr />
+<h2 [ngStyle]="{ backgroundColor: show === true ? 'yellow' : 'red' }">
+  ngStyle
+</h2>
+<hr />
+
+<!-- Custom Prperty -->
+
+<app-alphabets
+  *ngFor="let alphabet of alphabets"
+  [alphabet]="alphabet"
+  (deleteItem)="onDeleteItem($event)"
+></app-alphabets>

@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { TopicExplorerComponent } from './topic-explorer/topic-explorer.component';
 import { FormsModule } from '@angular/forms';
 import { ForComponent } from './topic-explorer/for/for.component';
+import { AlphabetsComponent } from './topic-explorer/alphabets/alphabets.component';
+
 
 @NgModule({
-  declarations: [AppComponent, TopicExplorerComponent, ForComponent],
+  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

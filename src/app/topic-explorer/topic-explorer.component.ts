@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 export class TopicExplorerComponent {
   title: string = 'Topic Components';
   color: string = 'blue';
+  content1: string = 'Event Binding';
+
+  onClick() {
+    this.content1 = 'Event Binded';
+  }
 }

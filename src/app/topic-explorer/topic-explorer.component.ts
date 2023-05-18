@@ -9,6 +9,7 @@ export class TopicExplorerComponent {
   title: string = 'Topic Components';
   color: string = 'blue';
   content1: string = 'Event Binding';
+  twoData: string = '';
 
   onClick() {
     this.content1 = 'Event Binded';

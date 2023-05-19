@@ -7,10 +7,11 @@ import { TopicExplorerComponent } from './topic-explorer/topic-explorer.componen
 import { FormsModule } from '@angular/forms';
 import { ForComponent } from './topic-explorer/for/for.component';
 import { AlphabetsComponent } from './topic-explorer/alphabets/alphabets.component';
+import { InputFieldComponent } from './topic-explorer/input-field/input-field.component';
 
 
 @NgModule({
-  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent],
+  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

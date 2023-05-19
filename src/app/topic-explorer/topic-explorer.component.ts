@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { filter } from 'rxjs';
+import { InputFieldComponent } from './input-field/input-field.component';
 
 @Component({
   selector: 'app-topic-explorer',
@@ -18,14 +19,28 @@ export class TopicExplorerComponent implements OnInit {
 
   alphabets = ['A', 'B', 'C', 'D', 'E'];
 
+  firstname: string = '';
+  lastname: string = '';
+  password: string = '';
+
+  @ViewChild(InputFieldComponent) inputFieldComponent!: InputFieldComponent;
+
   onClick() {
     this.content1 = 'Event Binded';
   }
 
   onDeleteItem(deleted: string) {
-    this.alphabets = this.alphabets.filter((alphabet)=>alphabet !==deleted)
+    this.alphabets = this.alphabets.filter((alphabet) => alphabet !== deleted);
   }
   ngOnInit() {
     setInterval(() => (this.show = !this.show), 500);
+  }
+  onSubmit(event: { firstname: string; lastname: string }) {
+    this.firstname = event.firstname;
+    this.lastname = event.lastname;
+  }
+
+  accessChild() {
+    this.password = this.inputFieldComponent.password;
   }
 }

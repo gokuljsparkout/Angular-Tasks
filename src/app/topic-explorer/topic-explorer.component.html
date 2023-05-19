@@ -35,9 +35,21 @@
 <hr />
 
 <!-- Custom Prperty -->
-
 <app-alphabets
   *ngFor="let alphabet of alphabets"
   [alphabet]="alphabet"
   (deleteItem)="onDeleteItem($event)"
 ></app-alphabets>
+<hr />
+
+<!-- View Child -->
+<app-input-field (submitted)="onSubmit($event)"></app-input-field>
+<h2>First Name : {{ firstname }}</h2>
+<h2>Last Name : {{ lastname }}</h2>
+<hr />
+
+<h2>Parent Component</h2>
+<p>Password from Chilld : {{password}}</p>
+<button class="btn btn-primary" (click)='accessChild()'>Access Child Component</button>
+<hr>
+

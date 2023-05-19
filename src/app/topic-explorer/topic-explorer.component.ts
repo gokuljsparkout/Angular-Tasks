@@ -1,4 +1,11 @@
-import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { filter } from 'rxjs';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { ContentChildComponent } from './content-child/content-child.component';
@@ -9,6 +16,8 @@ import { ContentChildComponent } from './content-child/content-child.component';
   styleUrls: ['./topic-explorer.component.css'],
 })
 export class TopicExplorerComponent implements OnInit {
+  variable: string = 'Hello World';
+
   title: string = 'Topic Components';
   color: string = 'blue';
   content1: string = 'Event Binding';
@@ -53,5 +62,9 @@ export class TopicExplorerComponent implements OnInit {
 
   accessProjectedContent() {
     this.message = this.contentChildComponent.message;
+  }
+
+  onVariableChange() {
+    this.variable = 'Good Bye World';
   }
 }

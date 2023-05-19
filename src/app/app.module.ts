@@ -13,10 +13,12 @@ import { LifecycleComponent } from './topic-explorer/lifecycle/lifecycle.compone
 import { RendererComponent } from './topic-explorer/renderer/renderer.component';
 import { DirectiveComponent } from './topic-explorer/directive/directive.component';
 import { ClickcolorDirective } from './topic-explorer/directive/clickcolor.directive';
+import { DummyComponent } from './topic-explorer/dummy/dummy.component';
+import { OnChangesComponent } from './topic-explorer/on-changes/on-changes.component';
 
 
 @NgModule({
-  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent, ContentChildComponent, LifecycleComponent, RendererComponent, DirectiveComponent, ClickcolorDirective],
+  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent, ContentChildComponent, LifecycleComponent, RendererComponent, DirectiveComponent, ClickcolorDirective, DummyComponent, OnChangesComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

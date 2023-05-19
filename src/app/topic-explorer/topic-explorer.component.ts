@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
 import { filter } from 'rxjs';
 import { InputFieldComponent } from './input-field/input-field.component';
+import { ContentChildComponent } from './content-child/content-child.component';
 
 @Component({
   selector: 'app-topic-explorer',
@@ -22,8 +23,11 @@ export class TopicExplorerComponent implements OnInit {
   firstname: string = '';
   lastname: string = '';
   password: string = '';
+  message: string = '';
 
   @ViewChild(InputFieldComponent) inputFieldComponent!: InputFieldComponent;
+  @ContentChild(ContentChildComponent)
+  contentChildComponent!: ContentChildComponent;
 
   onClick() {
     this.content1 = 'Event Binded';
@@ -42,5 +46,9 @@ export class TopicExplorerComponent implements OnInit {
 
   accessChild() {
     this.password = this.inputFieldComponent.password;
+  }
+
+  accessProjectedContent() {
+    this.message = this.contentChildComponent.message;
   }
 }

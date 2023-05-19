@@ -49,7 +49,15 @@
 <hr />
 
 <h2>Parent Component</h2>
-<p>Password from Chilld : {{password}}</p>
-<button class="btn btn-primary" (click)='accessChild()'>Access Child Component</button>
-<hr>
+<p>Password from Chilld : {{ password }}</p>
+<button class="btn btn-primary" (click)="accessChild()">
+  Access Child Component
+</button>
+<hr />
 
+<ng-content></ng-content>
+<p>Password from Projected Component : {{ message }}</p>
+<button class="btn btn-primary" (click)="accessProjectedContent()">
+  Access Projected Content
+</button>
+<hr />

@@ -18,10 +18,8 @@ export class InputFieldComponent {
     firstname: string;
     lastname: string;
   }>();
-  // constructor(private elementRef: ElementRef) {}
 
   password: string = 'ABC123';
-
 
   onSubmit() {
     this.submitted.emit({

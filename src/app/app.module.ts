@@ -8,10 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { ForComponent } from './topic-explorer/for/for.component';
 import { AlphabetsComponent } from './topic-explorer/alphabets/alphabets.component';
 import { InputFieldComponent } from './topic-explorer/input-field/input-field.component';
+import { ContentChildComponent } from './topic-explorer/content-child/content-child.component';
 
 
 @NgModule({
-  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent],
+  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent, ContentChildComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

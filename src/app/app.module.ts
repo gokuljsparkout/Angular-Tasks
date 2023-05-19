@@ -11,10 +11,12 @@ import { InputFieldComponent } from './topic-explorer/input-field/input-field.co
 import { ContentChildComponent } from './topic-explorer/content-child/content-child.component';
 import { LifecycleComponent } from './topic-explorer/lifecycle/lifecycle.component';
 import { RendererComponent } from './topic-explorer/renderer/renderer.component';
+import { DirectiveComponent } from './topic-explorer/directive/directive.component';
+import { ClickcolorDirective } from './topic-explorer/directive/clickcolor.directive';
 
 
 @NgModule({
-  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent, ContentChildComponent, LifecycleComponent, RendererComponent],
+  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent, ContentChildComponent, LifecycleComponent, RendererComponent, DirectiveComponent, ClickcolorDirective],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

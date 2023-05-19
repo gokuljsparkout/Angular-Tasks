@@ -10,10 +10,11 @@ import { AlphabetsComponent } from './topic-explorer/alphabets/alphabets.compone
 import { InputFieldComponent } from './topic-explorer/input-field/input-field.component';
 import { ContentChildComponent } from './topic-explorer/content-child/content-child.component';
 import { LifecycleComponent } from './topic-explorer/lifecycle/lifecycle.component';
+import { RendererComponent } from './topic-explorer/renderer/renderer.component';
 
 
 @NgModule({
-  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent, ContentChildComponent, LifecycleComponent],
+  declarations: [AppComponent, TopicExplorerComponent, ForComponent,AlphabetsComponent, InputFieldComponent, ContentChildComponent, LifecycleComponent, RendererComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

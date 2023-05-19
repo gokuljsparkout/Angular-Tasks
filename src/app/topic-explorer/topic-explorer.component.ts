@@ -25,6 +25,8 @@ export class TopicExplorerComponent implements OnInit {
   password: string = '';
   message: string = '';
 
+  showlc: boolean = true;
+
   @ViewChild(InputFieldComponent) inputFieldComponent!: InputFieldComponent;
   @ContentChild(ContentChildComponent)
   contentChildComponent!: ContentChildComponent;
@@ -38,6 +40,7 @@ export class TopicExplorerComponent implements OnInit {
   }
   ngOnInit() {
     setInterval(() => (this.show = !this.show), 500);
+    setTimeout(() => (this.showlc = false), 10000);
   }
   onSubmit(event: { firstname: string; lastname: string }) {
     this.firstname = event.firstname;

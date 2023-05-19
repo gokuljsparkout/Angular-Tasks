@@ -55,9 +55,14 @@
 </button>
 <hr />
 
+<!-- Conent Child -->
 <ng-content></ng-content>
 <p>Password from Projected Component : {{ message }}</p>
 <button class="btn btn-primary" (click)="accessProjectedContent()">
   Access Projected Content
 </button>
 <hr />
+
+<!-- LifeCycle -->
+<app-lifecycle *ngIf="showlc === true"></app-lifecycle>
+

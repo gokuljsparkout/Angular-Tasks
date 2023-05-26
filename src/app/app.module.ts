@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ActiveUsersComponent } from './active-users/active-users.component';
 import { InactiveUsersComponent } from './inactive-users/inactive-users.component';
+import { UserService } from './users.service';
+import { CounterService } from './counter.service';
 
 @NgModule({
   declarations: [AppComponent, ActiveUsersComponent, InactiveUsersComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [],
+  providers: [UserService, CounterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

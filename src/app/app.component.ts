@@ -6,13 +6,13 @@ import { CounterService } from './counter.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent{
-  
-
-  updatedCount(){
-   return this.counterService.count
+export class AppComponent {
+  updatedACount() {
+    return this.counterService.inActiveToActiveCount;
+  }
+  updatedIACount() {
+    return this.counterService.activeToInActiveCount;
   }
 
-  constructor(private counterService: CounterService) {  
-}
+  constructor(private counterService: CounterService) {}
 }

@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <app-active-users ></app-active-users>
+      <app-active-users></app-active-users>
       <app-inactive-users></app-inactive-users>
-      Count : {{updatedCount()}}
+      Active to In Active Count : {{ updatedACount() }} <br />
+      In Active to Active Count : {{ updatedIACount() }}
     </div>
   </div>
 </div>

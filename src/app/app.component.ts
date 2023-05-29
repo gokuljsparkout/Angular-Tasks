@@ -1,5 +1,5 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { CounterService } from './counter.service';
+import { Component } from '@angular/core';
+import { UserService } from './users/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,13 @@ import { CounterService } from './counter.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  updatedACount() {
-    return this.counterService.inActiveToActiveCount;
+  showForm!: boolean;
+  constructor(private userService: UserService) {
+    this.userService.getUsers();
+    this.userService.showStatusChanged.subscribe(()=>{
+      this.showForm =this.userService.getShowStatus()
+    })
+    
   }
-  updatedIACount() {
-    return this.counterService.activeToInActiveCount;
-  }
-
-  constructor(private counterService: CounterService) {}
+  
 }

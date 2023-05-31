@@ -11,8 +11,6 @@ import { HeaderComponent } from './header/header.component';
 import { AuthGuard } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
-import { HttpClientModule } from '@angular/common/http';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })

@@ -15,10 +15,9 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.login('admin', 'password');
-    this.isLoggedin = this.authService.getIsLoggedin();
+    this.isLoggedin = this.authService.login();
   }
   onLogout() {
-    this.authService.logout();
+    this.isLoggedin = this.authService.logout();
   }
 }

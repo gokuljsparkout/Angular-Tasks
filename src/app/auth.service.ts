@@ -1,46 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 @Injectable()
 export class AuthService {
   private apiUrl = 'http://localhost:4200';
   private isLoggedin = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
   getIsLoggedin() {
     return this.isLoggedin;
   }
-  login(username: string, password: string): Promise<void> {
-    return this.http
-      .post<any>(`${this.apiUrl}/login`, { username, password })
-      .toPromise()
-      .then((response) => {
-        this.isLoggedin = true;
-      })
-      .catch((error) => {
-        throw error;
-      });
+  login() {
+    this.isLoggedin = true;
+    if (this.router.url === '/login') {
+      this.router.navigate(['/protected']);
+    }
+    return this.isLoggedin;
   }
-  logout(): Promise<void> {
-    return this.http
-      .post<any>(`${this.apiUrl}/login`, {})
-      .toPromise()
-      .then((response) => {
-        this.isLoggedin = false;
-      })
-      .catch((error) => {
-        throw error;
-      });
+  logout() {
+    this.isLoggedin = false;
+    if (this.router.url === '/protected') {
+      this.router.navigate(['/']);
+    }
+    return this.isLoggedin;
   }
 
-  isAuthenticated(): Promise<boolean> {
-    return this.http
-      .get<boolean>(`${this.apiUrl}/check-auth`)
-      .toPromise()
-      .then((response: any) => {
-        return response.authenticated;
-      })
-      .catch((error) => {
-        throw error;
-      });
+  isAuthenticated() {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.isLoggedin);
+      }, 500);
+    });
+    return promise;
   }
 }

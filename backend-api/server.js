@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -6,7 +7,15 @@ const port = 4200;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-//Using these middleware functions allows your Express.js application to handle requests with URL-encoded or JSON data,
+
+// Configure session middleware
+app.use(
+  session({
+    secret: "your-secret-key",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 const users = [
   { id: 1, username: "admin", password: "password" },
@@ -21,6 +30,8 @@ app.post("/login", (req, res) => {
   );
 
   if (user) {
+    // Store user ID in the session
+    req.session.userId = user.id;
     res.status(200).json({ message: "Login successful" });
   } else {
     res.status(401).json({ error: "Invalid username or password" });
@@ -33,7 +44,7 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/check-auth", (req, res) => {
-  const isAuthenticated = /* Check if the user is authenticated */ false;
+  const isAuthenticated = req.session.userId ? true : false;
 
   if (isAuthenticated) {
     res.status(200).json({ authenticated: true });

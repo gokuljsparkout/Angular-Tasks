@@ -11,13 +11,14 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.isLoggedin = this.authService.isLoggedin;
+    this.isLoggedin = this.authService.getIsLoggedin();
   }
 
   onLogin() {
-    this.isLoggedin = this.authService.login();
+    this.authService.login('admin', 'password');
+    this.isLoggedin = this.authService.getIsLoggedin();
   }
   onLogout() {
-    this.isLoggedin = this.authService.logout();
+    this.authService.logout();
   }
 }

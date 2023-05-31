@@ -1,19 +1,46 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+@Injectable()
 export class AuthService {
-  isLoggedin = false;
+  private apiUrl = 'http://localhost:4200';
+  private isLoggedin = false;
 
-  login() {
-    return (this.isLoggedin = true);
+  constructor(private http: HttpClient) {}
+  getIsLoggedin() {
+    return this.isLoggedin;
   }
-  logout() {
-    return (this.isLoggedin = false);
+  login(username: string, password: string): Promise<void> {
+    return this.http
+      .post<any>(`${this.apiUrl}/login`, { username, password })
+      .toPromise()
+      .then((response) => {
+        this.isLoggedin = true;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+  logout(): Promise<void> {
+    return this.http
+      .post<any>(`${this.apiUrl}/login`, {})
+      .toPromise()
+      .then((response) => {
+        this.isLoggedin = false;
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
-  isAuthenticated() {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.isLoggedin);
-      }, 500);
-    });
-    return promise;
+  isAuthenticated(): Promise<boolean> {
+    return this.http
+      .get<boolean>(`${this.apiUrl}/check-auth`)
+      .toPromise()
+      .then((response: any) => {
+        return response.authenticated;
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 }

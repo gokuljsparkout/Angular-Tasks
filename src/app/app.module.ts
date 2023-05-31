@@ -8,9 +8,10 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { HeaderComponent } from './header/header.component';
-import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })

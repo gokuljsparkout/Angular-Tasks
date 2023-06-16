@@ -14,10 +14,6 @@ import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './users/user/user.component';
 import { ManageUsersComponent } from './users/manage-users/manage-users.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { UserEditComponent } from './users/manage-users/user-edit/user-edit.component';
-import { ModalService } from './users/manage-users/modal.service';
-import { ModalModule } from 'src/modal.module';
 
 @NgModule({
   declarations: [
@@ -36,9 +32,8 @@ import { ModalModule } from 'src/modal.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ModalModule,
   ],
-  providers: [UserService, ModalService],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

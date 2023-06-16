@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
 
   getUser() {
     this.userService.getUserById(this.id).subscribe((response: any) => {
-      this.user = response.data;
+      this.user = response
       console.log(this.user);
     });
   }

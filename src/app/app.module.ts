@@ -11,9 +11,11 @@ import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserService } from './user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './users/user/user.component';
 import { ManageUsersComponent } from './users/manage-users/manage-users.component';
+import { ApiService } from './api.service';
+import { FakeBackendInterceptor } from './interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,16 @@ import { ManageUsersComponent } from './users/manage-users/manage-users.componen
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    ApiService,
+    FakeBackendInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FakeBackendInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

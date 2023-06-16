@@ -13,6 +13,7 @@ export class ManageUsersComponent implements OnInit {
   user_id: any;
   selectedUserIndex: any;
   editMode: boolean = false;
+  showOptions: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -23,11 +24,16 @@ export class ManageUsersComponent implements OnInit {
     this.userService.userUpdated.subscribe(() => {
       this.fetchUsers();
     });
+    this.userService.userAdded.subscribe(() => {
+      this.fetchUsers();
+    });
     this.fetchUsers();
     this.editUserForm = new FormGroup({
       first_name: new FormControl(),
       last_name: new FormControl(),
       email: new FormControl(),
+      avatar: new FormControl(),
+      occupation: new FormControl(),
     });
   }
 
@@ -63,6 +69,8 @@ export class ManageUsersComponent implements OnInit {
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
+        occupation: user.occupation,
+        avatar: user.avatar,
       });
     }
   }
@@ -70,6 +78,7 @@ export class ManageUsersComponent implements OnInit {
     this.editMode = false;
     this.displayStyle = 'none';
     this.editUserForm.reset();
+    this.showOptions = false;
   }
 
   onSubmit() {
@@ -77,6 +86,16 @@ export class ManageUsersComponent implements OnInit {
       (user) => user.id === this.user_id
     );
     if (this.selectedUserIndex === -1) {
+      this.userService.addUser(this.editUserForm.value).subscribe(
+        (response) => {
+          console.log('User added successfully.');
+          console.log(response);
+          this.userService.userAdded.next(null);
+        },
+        (error) => {
+          console.log('Error adding user:', error);
+        }
+      );
     } else {
       this.userService
         .updateUserById(this.user_id, this.editUserForm.value)
@@ -94,5 +113,12 @@ export class ManageUsersComponent implements OnInit {
     }
 
     this.closePopup();
+  }
+
+  seeMore() {
+    this.showOptions = true;
+  }
+  hide() {
+    this.showOptions = false;
   }
 }

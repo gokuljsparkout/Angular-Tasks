@@ -8,6 +8,7 @@ export class UserService {
 
   userDeleted = new Subject();
   userUpdated = new Subject();
+  userAdded = new Subject();
 
   getUsers() {
     return this.http.get(
@@ -30,7 +31,13 @@ export class UserService {
   updateUserById(id: number, data: any) {
     return this.http.put(
       `https://648c0b4f8620b8bae7ec1d9c.mockapi.io/users/data/${id}`,
-        data,
+      data
+    );
+  }
+  addUser(data: any) {
+    return this.http.post(
+      'https://648c0b4f8620b8bae7ec1d9c.mockapi.io/users/data/',
+      data
     );
   }
 }

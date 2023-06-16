@@ -1,9 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <img src="{{ user?.avatar }}" alt="User Avatar" class="img-fluid" />
-      <h4>{{ user?.first_name }} {{ user?.last_name }}</h4>
-      <p>Email: {{ user?.email }}</p>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card p-3">
+    <div class="d-flex align-items-center">
+      <div class="image">
+        <img
+          src="{{user?.avatar}}"
+          class="rounded"
+          width="300"
+        />
+      </div>
+
+      <div class="ml-3 w-100">
+        <h4 class="mb-0 mt-0">Alex HMorrision</h4>
+        <span>Senior Journalist</span>
+
+        <div
+          class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats"
+        >
+          <div class="d-flex flex-column">
+            <span class="articles">Articles</span>
+            <span class="number1">38</span>
+          </div>
+
+          <div class="d-flex flex-column">
+            <span class="followers">Followers</span>
+            <span class="number2">980</span>
+          </div>
+
+          <div class="d-flex flex-column">
+            <span class="rating">Rating</span>
+            <span class="number3">8.9</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

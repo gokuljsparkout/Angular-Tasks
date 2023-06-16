@@ -1,0 +1,49 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let user of users">
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="openPopup()">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete(user.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+    <!-- Add more rows here if needed -->
+  </tbody>
+</table>
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">GeeksForGeeks</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

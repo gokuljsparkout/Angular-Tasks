@@ -9,7 +9,11 @@ export class UserService {
     return this.http.get('https://reqres.in/api/users');
   }
 
-  getUserById(id : number){
-    return this.http.get(`https://reqres.in/api/users/${id}`)
+  getUserById(id: number) {
+    return this.http.get(`https://reqres.in/api/users/${id}`);
+  }
+
+  deleteUserById(id: number) {
+    return this.http.delete(`https://reqres.in/api/users/${id}`);
   }
 }

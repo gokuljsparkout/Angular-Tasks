@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
+import { ManageUsersComponent } from './users/manage-users/manage-users.component';
 
 const routes: Routes = [
   {
@@ -22,12 +23,18 @@ const routes: Routes = [
         component: UsersComponent,
         pathMatch: 'full',
       },
+
       {
         path: 'users/:id',
         component: UserComponent,
       },
+      {
+        path: 'manage-users',
+        component: ManageUsersComponent,
+      },
     ],
   },
+
   {
     path: 'register',
     component: RegisterComponent,

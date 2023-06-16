@@ -13,6 +13,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './users/user/user.component';
+import { ManageUsersComponent } from './users/manage-users/manage-users.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UserEditComponent } from './users/manage-users/user-edit/user-edit.component';
+import { ModalService } from './users/manage-users/modal.service';
+import { ModalModule } from 'src/modal.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +28,7 @@ import { UserComponent } from './users/user/user.component';
     UsersComponent,
     SidebarComponent,
     UserComponent,
+    ManageUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +36,9 @@ import { UserComponent } from './users/user/user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ModalModule,
   ],
-  providers: [UserService],
+  providers: [UserService, ModalService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -7,17 +7,22 @@ import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { ManageUsersComponent } from './users/manage-users/manage-users.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: DashboardComponent,
     pathMatch: 'full',
   },
   {
     path: 'home',
+    canActivate: [AuthGuard],
     component: HomeComponent,
     children: [
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
       {
         path: 'users',
         component: UsersComponent,

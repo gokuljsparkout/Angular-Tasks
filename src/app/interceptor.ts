@@ -21,13 +21,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     console.log(request);
-    const { url,body method, headers } = request;
+    const { url, body, method, headers } = request;
     if (url.endsWith('login') && method === 'POST') {
       return handleLogin();
     }
-    if (url.endsWith('register') && method === 'POST') {
-      return handleRegister();
-    }
+    // if (url.endsWith('register') && method === 'POST') {
+    //   return handleRegister();
+    // }
     return next.handle(request);
 
     function isLoggedIn() {
@@ -35,27 +35,32 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function handleLogin(): Observable<HttpEvent<unknown>> {
-      return of(
-        new HttpResponse({
-          status: 200,
-          body: {
-            id: '1',
-            username: 'profanis',
-            token: FAKE_JWT_TOKEN,
-          },
-        })
+      const registeredUsers = JSON.parse(
+        localStorage.getItem('registeredUsers') || '[]'
       );
-    }
-    function handleRegister(): Observable<HttpEvent<unknown>> {
-      return of(
-        new HttpResponse({
-          status: 200,
-          body: {
-            username: ,
-            token: FAKE_JWT_TOKEN,
-          },
-        })
+      const user = body as { username: string; password: string };
+      const existingUser = registeredUsers.find(
+        (registeredUser: any) => registeredUser === user.username
       );
+      if (existingUser) {
+        return of(
+          new HttpResponse({
+            status: 200,
+            body: {
+              id: '1',
+              username: user.username,
+              token: FAKE_JWT_TOKEN,
+            },
+          })
+        );
+      } else {
+        const response = new HttpResponse({
+          status: 404,
+          body: 'User is not registered',
+        });
+
+        return of(response);
+      }
     }
   }
 }

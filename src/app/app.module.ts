@@ -16,6 +16,15 @@ import { UserComponent } from './users/user/user.component';
 import { ManageUsersComponent } from './users/manage-users/manage-users.component';
 import { ApiService } from './api.service';
 import { FakeBackendInterceptor } from './interceptor';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -27,6 +36,8 @@ import { FakeBackendInterceptor } from './interceptor';
     SidebarComponent,
     UserComponent,
     ManageUsersComponent,
+    DashboardComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,10 +45,17 @@ import { FakeBackendInterceptor } from './interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatIconModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     UserService,
     ApiService,
+    AuthService,
+    AuthGuard,
+    ToastrService,
     FakeBackendInterceptor,
     {
       provide: HTTP_INTERCEPTORS,

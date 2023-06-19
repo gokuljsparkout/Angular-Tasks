@@ -9,50 +9,37 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthService {
   logstatusChanged = new Subject();
-  private registeredUsers: string[] = []; // Array to store registered users
+  private registeredUsers: {
+    email: string;
+    password: string;
+  }[] = [];
 
   constructor(private apiService: ApiService, private toastr: ToastrService) {
     const token = localStorage.getItem('profanis_auth');
 
-    // Load registered users from local storage
     const registeredUsersJson = localStorage.getItem('registeredUsers');
     if (registeredUsersJson) {
       this.registeredUsers = JSON.parse(registeredUsersJson);
     }
   }
 
-  login(username: string, password: string) {
-    return this.apiService.login(username, password).pipe(
+  login(email: string, password: string) {
+    return this.apiService.login(email, password).pipe(
       tap((response: any) => {
-        console.log(response);
-        if (response !== 'User is not registered') {
-          localStorage.setItem(username, response.token);
+        if (response.message === 'Login Successful') {
+          localStorage.setItem(email, response.token);
           localStorage.setItem('loggedin', 'true');
         }
       })
     );
   }
 
-  // register(username: string, password: string) {
-  //   if (this.registeredUsers.includes(username)) {
-  //     alert('User is already registered.');
-  //     return;
-  //   }
-
-  //   this.registeredUsers.push(username);
-  //   localStorage.setItem(
-  //     'registeredUsers',
-  //     JSON.stringify(this.registeredUsers)
-  //   );
-
-  //   return of(null); // Return an observable with a null value
-  // }
-
-  register(username: string, password: string): Observable<boolean> {
-    if (this.registeredUsers.includes(username)) {
+  register(name: string, email: string, password: string): Observable<boolean> {
+    if (this.registeredUsers.includes({ email: email, password: password })) {
       return of(false);
     } else {
-      this.registeredUsers.push(username);
+      const user = { name: name, email: email, password: password };
+      this.registeredUsers.push(user);
       localStorage.setItem(
         'registeredUsers',
         JSON.stringify(this.registeredUsers)

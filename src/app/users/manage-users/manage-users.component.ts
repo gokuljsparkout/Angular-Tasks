@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -29,11 +29,11 @@ export class ManageUsersComponent implements OnInit {
     });
     this.fetchUsers();
     this.editUserForm = new FormGroup({
-      first_name: new FormControl(),
-      last_name: new FormControl(),
-      email: new FormControl(),
-      avatar: new FormControl(),
-      occupation: new FormControl(),
+      first_name: new FormControl('', Validators.required),
+      last_name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      avatar: new FormControl('', Validators.required),
+      occupation: new FormControl('', Validators.required),
     });
   }
 
@@ -46,10 +46,7 @@ export class ManageUsersComponent implements OnInit {
   onDelete(id: number) {
     this.userService.deleteUserById(id).subscribe(
       (response: any) => {
-        console.log('User deleted successfully.');
-        console.log(response);
         this.userService.userDeleted.next(null);
-        // this.users = this.users.filter((user) => user.id !== id);
       },
       (error) => {
         console.log('Error deleting user:', error);
@@ -82,37 +79,45 @@ export class ManageUsersComponent implements OnInit {
   }
 
   onSubmit() {
-    this.selectedUserIndex = this.users.findIndex(
-      (user) => user.id === this.user_id
-    );
-    if (this.selectedUserIndex === -1) {
-      this.userService.addUser(this.editUserForm.value).subscribe(
-        (response) => {
-          console.log('User added successfully.');
-          console.log(response);
-          this.userService.userAdded.next(null);
-        },
-        (error) => {
-          console.log('Error adding user:', error);
-        }
+    if (this.editUserForm.valid) {
+      this.selectedUserIndex = this.users.findIndex(
+        (user) => user.id === this.user_id
       );
-    } else {
-      this.userService
-        .updateUserById(this.user_id, this.editUserForm.value)
-        .subscribe(
+      if (this.selectedUserIndex === -1) {
+        this.userService.addUser(this.editUserForm.value).subscribe(
           (response) => {
-            console.log('User updated successfully.');
+            console.log('User added successfully.');
             console.log(response);
-            this.userService.userUpdated.next(null);
-            // this.users = this.users.filter((user) => user.id !== id);
+            this.userService.userAdded.next(null);
           },
           (error) => {
-            console.log('Error updating user:', error);
+            console.log('Error adding user:', error);
           }
         );
+      } else {
+        this.userService
+          .updateUserById(this.user_id, this.editUserForm.value)
+          .subscribe(
+            (response) => {
+              console.log('User updated successfully.');
+              console.log(response);
+              this.userService.userUpdated.next(null);
+            },
+            (error) => {
+              console.log('Error updating user:', error);
+            }
+          );
+      }
+      this.closePopup();
+    } else {
+      // Form is invalid, display error messages for each invalid field
+      Object.keys(this.editUserForm.controls).forEach((key) => {
+        const control = this.editUserForm.get(key);
+        if (control && control.invalid) {
+          control.markAsTouched();
+        }
+      });
     }
-
-    this.closePopup();
   }
 
   seeMore() {

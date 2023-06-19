@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post('login', { username, password });
+  login(email: string, password: string): Observable<any> {
+    return this.http.post('login', { email, password });
   }
 
-  register(username: string, password: string): Observable<any> {
-    return this.http.post('register', { username, password });
+  register(email: string, password: string): Observable<any> {
+    return this.http.post('register', { email, password });
   }
 }

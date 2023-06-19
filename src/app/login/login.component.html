@@ -1,4 +1,4 @@
-<body class="bg-gradient-primary">
+<body >
   <div class="container">
     <!-- Outer Row -->
     <div class="row justify-content-center">
@@ -27,6 +27,27 @@
                         placeholder="Email Address..."
                         formControlName="email"
                       />
+                      <div
+                        *ngIf="
+                          loginForm.get('email')?.invalid &&
+                          (loginForm.get('email')?.dirty ||
+                            loginForm.get('email')?.touched)
+                        "
+                        class="text-danger"
+                      >
+                        <div
+                          class="small"
+                          *ngIf="loginForm.get('email')?.errors?.['required']"
+                        >
+                          Email is required.
+                        </div>
+                        <div
+                          class="small"
+                          *ngIf="loginForm.get('email')?.errors?.['email']"
+                        >
+                          Please enter a valid email address.
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <input
@@ -36,8 +57,24 @@
                         placeholder="Password"
                         formControlName="password"
                       />
+                      <div
+                        *ngIf="
+                          loginForm.get('password')?.invalid &&
+                          (loginForm.get('password')?.dirty ||
+                            loginForm.get('password')?.touched)
+                        "
+                        class="text-danger"
+                      >
+                        <div
+                          class="small"
+                          *ngIf="loginForm.get('password')?.errors?.['required']"
+                        >
+                          Password is required.
+                        </div>
+                      </div>
                     </div>
                     <button
+                      [disabled]="!loginForm.valid"
                       class="btn btn-primary btn-user btn-block"
                       type="submit"
                     >

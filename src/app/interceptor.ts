@@ -5,6 +5,7 @@ import {
   HttpRequest,
   HttpResponse,
   HTTP_INTERCEPTORS,
+  withRequestsMadeViaParent,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -20,45 +21,48 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(request);
     const { url, body, method, headers } = request;
     if (url.endsWith('login') && method === 'POST') {
       return handleLogin();
     }
-    // if (url.endsWith('register') && method === 'POST') {
-    //   return handleRegister();
-    // }
     return next.handle(request);
-
-    function isLoggedIn() {
-      return headers.get('authorization') === FAKE_JWT_TOKEN;
-    }
 
     function handleLogin(): Observable<HttpEvent<unknown>> {
       const registeredUsers = JSON.parse(
         localStorage.getItem('registeredUsers') || '[]'
       );
-      const user = body as { username: string; password: string };
+      const user = body as { email: string; password: string };
       const existingUser = registeredUsers.find(
-        (registeredUser: any) => registeredUser === user.username
+        (registeredUser: any) => registeredUser.email === user.email
       );
       if (existingUser) {
-        return of(
-          new HttpResponse({
+        if (existingUser?.password !== user?.password) {
+          const response = new HttpResponse({
+            status: 404,
+            body: {
+              message: 'Password Incorrect',
+              token : null
+            },
+          });
+          return of(response);
+        } else {
+          const response = new HttpResponse({
             status: 200,
             body: {
               id: '1',
-              username: user.username,
+              email: user.email,
+              password: user.password,
               token: FAKE_JWT_TOKEN,
+              message: 'Login Successful',
             },
-          })
-        );
+          });
+          return of(response);
+        }
       } else {
         const response = new HttpResponse({
           status: 404,
-          body: 'User is not registered',
+          body: { message: 'User is not registered', token : null },
         });
-
         return of(response);
       }
     }

@@ -1,0 +1,194 @@
+<div class="container">
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <div class="row">
+        <div class="col">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+            </div>
+            <form
+              class="user"
+              [formGroup]="registerForm"
+              (ngSubmit)="onRegister()"
+            >
+              <div class="form-group form-group-user">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Name"
+                  placeholder="Name"
+                  formControlName="name"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('name')?.invalid &&
+                    (registerForm.get('name')?.dirty ||
+                      registerForm.get('name')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div *ngIf="registerForm.get('name')?.errors?.['required']">
+                    Name is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-user">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail"
+                  placeholder="Email Address"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('email')?.invalid &&
+                    (registerForm.get('email')?.dirty ||
+                      registerForm.get('email')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                    Email is required.
+                  </div>
+                  <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-user">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="exampleInputCountryCode"
+                  placeholder="Country Code"
+                  formControlName="countryCode"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('countryCode')?.invalid &&
+                    (registerForm.get('countryCode')?.dirty ||
+                      registerForm.get('countryCode')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="registerForm.get('countryCode')?.errors?.['required']"
+                  >
+                    Country Code is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-user">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="exampleInputPhoneNumber"
+                  placeholder="Phone Number"
+                  formControlName="phoneNumber"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('phoneNumber')?.invalid &&
+                    (registerForm.get('phoneNumber')?.dirty ||
+                      registerForm.get('phoneNumber')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="registerForm.get('phoneNumber')?.errors?.['required']"
+                  >
+                    Phone Number is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-user">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('password')?.invalid &&
+                    (registerForm.get('password')?.dirty ||
+                      registerForm.get('password')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="registerForm.get('password')?.errors?.['required']"
+                  >
+                    Password is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-user">
+                <input
+                  type="kyc1"
+                  class="form-control"
+                  id="exampleInputKyc1"
+                  placeholder="Kyc1"
+                  formControlName="kyc1"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('kyc1')?.invalid &&
+                    (registerForm.get('kyc1')?.dirty ||
+                      registerForm.get('kyc1')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="registerForm.get('kyc1')?.errors?.['required']"
+                  >
+                    Kyc 1 is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-user">
+                <input
+                  type="kyc2"
+                  class="form-control"
+                  id="exampleInputKyc2"
+                  placeholder="Kyc2"
+                  formControlName="kyc2"
+                />
+                <div
+                  *ngIf="
+                    registerForm.get('kyc2')?.invalid &&
+                    (registerForm.get('kyc2')?.dirty ||
+                      registerForm.get('kyc2')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="registerForm.get('kyc2')?.errors?.['required']"
+                  >
+                    Kyc 2 is required.
+                  </div>
+                </div>
+              </div>
+              <button
+                [disabled]="!registerForm.valid"
+                type="submit"
+                class="btn btn-primary btn-user btn-block"
+              >
+                Register Account
+              </button>
+              <hr />
+            </form>
+            <div class="text-center">
+              <a class="small" routerLink="/login"
+                >Already have an account? Login!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

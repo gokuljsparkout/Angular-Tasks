@@ -5,10 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users.component';
 import { UsersRoutingModule } from './users.routing-module';
 import { UserService } from 'src/app/shared/services/users.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [UsersComponent],
-  imports: [HttpClientModule, UsersRoutingModule],
+  imports: [HttpClientModule, UsersRoutingModule, CommonModule],
   providers: [UserService],
   bootstrap: [],
 })

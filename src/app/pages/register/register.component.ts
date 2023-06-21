@@ -18,8 +18,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private registerService: RegisterService,
-    private router: Router,
-    private toastr: ToastrService
+    private router: Router
   ) {}
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -38,28 +37,17 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     if (this.registerForm.valid) {
-      this.registerService
-        .registerUser({
-          name: this.registerForm.get('name')?.value,
-          email: this.registerForm.get('email')?.value,
-          country_code: '+' + this.registerForm.get('countryCode')?.value,
-          phone_number: this.registerForm.get('phoneNumber')?.value,
-          password: this.registerForm.get('password')?.value,
-          kyc_document: [
-            this.registerForm.get('kyc1')?.value,
-            this.registerForm.get('kyc2')?.value,
-          ],
-        })
-        .subscribe((response) => {
-          if (response) {
-            this.toastr.success('User Registered Successfully');
-          } else {
-            this.toastr.warning('User Registered Already ');
-          }
-          setTimeout(() => {
-            this.router.navigate(['/login']);
-          }, 1000);
-        });
+      this.registerService.registerUser({
+        name: this.registerForm.get('name')?.value,
+        email: this.registerForm.get('email')?.value,
+        country_code: '+' + this.registerForm.get('countryCode')?.value,
+        phone_number: this.registerForm.get('phoneNumber')?.value,
+        password: this.registerForm.get('password')?.value,
+        kyc_document: [
+          this.registerForm.get('kyc1')?.value,
+          this.registerForm.get('kyc2')?.value,
+        ],
+      });
     }
   }
 }

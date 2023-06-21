@@ -14,7 +14,7 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/signup`, data);
   }
 
-  loginService(email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/login`,{email : email,password : password})
+  loginUser(data: { email: string; password: string }) {
+    return this.http.post(`${this.apiUrl}/login`,data);
   }
 }

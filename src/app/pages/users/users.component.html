@@ -1,1 +1,21 @@
-<h1 class="text-center">Users</h1>
+<h1 class="text-center">Events</h1>
+
+<div class="container">
+    <div class="row"  *ngFor="let data of dataCollection">
+      <div class="col-md-6">
+        <img [src]="data.preview_image
+        " alt="Event Banner" class="img-fluid"> 
+      </div>
+      <div class="col-md-6">
+        <h1>{{ data?.name }}</h1>
+        <p><strong>Description:</strong></p>
+        <div [innerHTML]="data?.description"></div>
+        <p><strong>Start Date:</strong> {{ data?.start_date }}</p>
+        <p><strong>End Date:</strong> {{ data?.end_date }}</p>
+        <p><strong>Venue:</strong> {{ data?.venue }}</p>
+        <p><strong>Time Zone:</strong> {{ data?.event_time_zone }}</p>
+        <!-- Add more data points as needed -->
+      </div>
+    </div>
+  </div>
+  

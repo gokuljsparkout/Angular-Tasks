@@ -7,9 +7,14 @@ import { UserService } from 'src/app/shared/services/users.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
+  dataCollection :any
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getUsers().subscribe((response)=> console.log(response))
+    this.userService.getUsers().subscribe((response: any) => {
+      console.log(response);
+      this.dataCollection = response.data;
+      console.log(this.dataCollection);
+    });
   }
 }
